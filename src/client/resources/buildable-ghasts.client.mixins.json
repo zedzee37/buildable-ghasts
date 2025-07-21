@@ -3,7 +3,6 @@
   "package": "zedzee.github.io.buildableghasts.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "DrawBlockOutlineAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
