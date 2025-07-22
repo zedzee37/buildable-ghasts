@@ -7,7 +7,7 @@ import org.ladysnake.cca.api.v3.component.Component;
 import zedzee.github.io.buildableghasts.grid.SubGrid;
 
 public class SubGridComponent implements Component {
-    public static int GRID_SIZE = 3;
+    public static final int GRID_SIZE = 3;
     public SubGrid grid;
 
     public SubGridComponent() {
