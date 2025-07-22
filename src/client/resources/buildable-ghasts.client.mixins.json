@@ -3,8 +3,10 @@
   "package": "zedzee.github.io.buildableghasts.mixin.client",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "AddFeatureInvoker",
+    "SubGridRenderMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  }
 }

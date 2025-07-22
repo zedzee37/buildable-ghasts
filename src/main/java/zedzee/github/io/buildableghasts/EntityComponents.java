@@ -13,6 +13,6 @@ public class EntityComponents implements EntityComponentInitializer {
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-        registry.registerFor(HappyGhastEntity.class, SUB_GRID, (entity) -> new SubGridComponent());
+        registry.registerFor(HappyGhastEntity.class, SUB_GRID, SubGridComponent::new);
     }
 }
