@@ -1,12 +1,8 @@
 package zedzee.github.io.buildableghasts.grid;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtHelper;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.registry.RegistryEntryLookup;
+import zedzee.github.io.buildableghasts.BuildableGhasts;
 
 import java.util.Arrays;
 
@@ -26,42 +22,23 @@ public class SubGrid {
         Arrays.fill(blocks, AIR);
     }
 
-    public NbtCompound writeToNbt() {
-        NbtCompound compound = new NbtCompound();
-
-        compound.putInt("x_size", xSize);
-        compound.putInt("y_size", ySize);
-        compound.putInt("z_size", zSize);
-
-        NbtList blockList = new NbtList();
-
-        for (int i = 0; i < blocks.length; i++) {
-            BlockState state = blocks[i];
-
-            if (state == null) {
-                continue;
-            }
-
-            blockList.add(NbtHelper.fromBlockState(state));
-        }
-
-        compound.put("blocks", blockList);
-        return compound;
-    }
-
-    public void readFromNbt(RegistryEntryLookup<Block> blockRegistryLookup, NbtCompound compound) {
-        xSize = compound.getInt("x_size").get();
-        ySize = compound.getInt("y_size").get();
-        zSize = compound.getInt("z_size").get();
-
-        NbtList blocksList = compound.getList("blocks").get();
-        for (int i = 0; i < blocksList.size(); i++) {
-            blocks[i] = NbtHelper.toBlockState(blockRegistryLookup, blocksList.get(i).asCompound().get());
-        }
+    public void setBlocks(BlockState[] blocks, int xSize, int ySize, int zSize) {
+        this.xSize = xSize;
+        this.ySize = ySize;
+        this.zSize = zSize;
+        this.blocks = blocks;
     }
 
     public void setAir(int i) {
         blocks[i] = AIR;
+    }
+
+    public BlockState getI(int i) {
+        return blocks[i];
+    }
+
+    public void setI(BlockState state, int i) {
+        blocks[i] = state;
     }
 
     private int coordsToIdx(int x, int y, int z) {
@@ -86,5 +63,26 @@ public class SubGrid {
 
     public int getZSize() {
         return zSize;
+    }
+
+    public int getTotalLength() {
+        return xSize * ySize * zSize;
+    }
+
+    public void debugPrintGrid() {
+        for (int i = 0; i < xSize; i++) {
+            BuildableGhasts.LOGGER.info("LAYER {}", i);
+
+            for (int j = 0; j < ySize; j++) {
+
+                for (int k = 0; k < zSize; k++) {
+                    BuildableGhasts.LOGGER.info(" {} ", blocks[coordsToIdx(i, j, k)].getBlock().getName().toString());
+                }
+
+                BuildableGhasts.LOGGER.info("");
+            }
+
+            BuildableGhasts.LOGGER.info("LAYER END");
+        }
     }
 }
