@@ -5,11 +5,11 @@
 	"name": "Buildable Ghasts",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
-		"Me!"
+		"Zedzee"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/zedzee37",
+		"sources": "https://github.com/zedzee37/buildable-ghasts"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/buildable-ghasts/icon.png",
@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"zedzee.github.io.buildableghasts.BuildableGhastsClient"
+		],
+		"cardinal-components": [
+			"zedzee.github.io.buildableghasts.EntityComponents"
 		]
 	},
 	"mixins": [
@@ -29,6 +32,10 @@
 			"environment": "client"
 		}
 	],
+	"custom": {
+		"cardinal-components": [
+		]
+	},
 	"depends": {
 		"fabricloader": ">=0.16.14",
 		"minecraft": "~1.21.8",
