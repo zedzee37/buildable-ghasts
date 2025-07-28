@@ -39,7 +39,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class FakeWorld extends World {
-    private FakeChunkManager chunkManager;
+    private final FakeChunkManager chunkManager;
 
     protected FakeWorld(MutableWorldProperties properties, RegistryKey<World> registryRef, DynamicRegistryManager registryManager, RegistryEntry<DimensionType> dimensionEntry, boolean isClient, boolean debugWorld, long seed, int maxChainedNeighborUpdates) {
         super(properties, registryRef, registryManager, dimensionEntry, isClient, debugWorld, seed, maxChainedNeighborUpdates);
@@ -62,7 +62,19 @@ public class FakeWorld extends World {
     }
 
     @Override
-    public void createExplosion(@Nullable Entity entity, @Nullable DamageSource damageSource, @Nullable ExplosionBehavior behavior, double x, double y, double z, float power, boolean createFire, ExplosionSourceType explosionSourceType, ParticleEffect smallParticle, ParticleEffect largeParticle, RegistryEntry<SoundEvent> soundEvent) {
+    public void createExplosion(
+            @Nullable Entity entity,
+            @Nullable DamageSource damageSource,
+            @Nullable ExplosionBehavior behavior,
+            double x,
+            double y,
+            double z,
+            float power,
+            boolean createFire,
+            ExplosionSourceType explosionSourceType,
+            ParticleEffect smallParticle,
+            ParticleEffect largeParticle,
+            RegistryEntry<SoundEvent> soundEvent) {
 
     }
 
