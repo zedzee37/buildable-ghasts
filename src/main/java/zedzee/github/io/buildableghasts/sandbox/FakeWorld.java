@@ -1,4 +1,4 @@
-package zedzee.github.io.buildableghasts.world;
+package zedzee.github.io.buildableghasts.sandbox;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -38,9 +38,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.List;
 
-public class VirtualWorld extends World {
-    protected VirtualWorld(MutableWorldProperties properties, RegistryKey<World> registryRef, DynamicRegistryManager registryManager, RegistryEntry<DimensionType> dimensionEntry, boolean isClient, boolean debugWorld, long seed, int maxChainedNeighborUpdates) {
+public class FakeWorld extends World {
+    private FakeChunkManager chunkManager;
+
+    protected FakeWorld(MutableWorldProperties properties, RegistryKey<World> registryRef, DynamicRegistryManager registryManager, RegistryEntry<DimensionType> dimensionEntry, boolean isClient, boolean debugWorld, long seed, int maxChainedNeighborUpdates) {
         super(properties, registryRef, registryManager, dimensionEntry, isClient, debugWorld, seed, maxChainedNeighborUpdates);
+        chunkManager = new FakeChunkManager();
     }
 
     @Override
@@ -65,7 +68,7 @@ public class VirtualWorld extends World {
 
     @Override
     public String asString() {
-        return "";
+        return "FakeWorld";
     }
 
     @Override
@@ -90,7 +93,6 @@ public class VirtualWorld extends World {
 
     @Override
     public void setBlockBreakingInfo(int entityId, BlockPos pos, int progress) {
-
     }
 
     @Override
@@ -120,7 +122,7 @@ public class VirtualWorld extends World {
 
     @Override
     public ChunkManager getChunkManager() {
-        return null;
+        return this.chunkManager;
     }
 
     @Override
@@ -160,7 +162,7 @@ public class VirtualWorld extends World {
 
     @Override
     public QueryableTickScheduler<Block> getBlockTickScheduler() {
-        return super.getBlockTickScheduler();
+        return null;
     }
 
     @Override
